@@ -624,6 +624,59 @@ h3 {
   padding: 9px 12px;
 }
 
+.credential-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.certification-list {
+  display: grid;
+  gap: 12px;
+}
+
+.certification-card,
+.outside-work {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.certification-card {
+  display: grid;
+  gap: 7px;
+  padding: 20px 22px;
+}
+
+.certification-card span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.certification-card strong {
+  color: var(--text);
+  font-size: 19px;
+}
+
+.outside-work {
+  align-self: stretch;
+  padding: 24px;
+}
+
+.outside-work h3 {
+  margin-top: 12px;
+}
+
+.outside-work p {
+  color: var(--muted);
+  margin-top: 12px;
+}
+
 .contact {
   text-align: left;
 }
@@ -923,7 +976,8 @@ footer {
   .case-layout,
   .profile-grid,
   .contact-grid,
-  .featured-case {
+  .featured-case,
+  .credential-grid {
     grid-template-columns: 1fr;
   }
 
@@ -994,7 +1048,8 @@ footer {
   .feature-preview,
   .architecture-flow,
   .architecture-lanes,
-  .architecture-notes {
+  .architecture-notes,
+  .credential-grid {
     grid-template-columns: 1fr;
   }
 
