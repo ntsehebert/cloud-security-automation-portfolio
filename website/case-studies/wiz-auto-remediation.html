@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Wiz auto remediation playbooks for cloud security misconfigurations." />
+  <title>Auto Remediation Playbooks | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | Remediation | Guardrails</p>
+      <h1>Auto remediation playbooks with safety checks built in.</h1>
+      <p class="case-summary">
+        Built remediation logic for cloud misconfigurations where automation can reduce exposure quickly,
+        while still respecting ownership, exceptions, and operational risk.
+      </p>
+      <div class="case-nav" aria-label="Case study sections">
+        <a href="#flow">Architecture</a>
+        <a href="#implementation">Implementation</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#production">Production</a>
+      </div>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <article id="flow" class="case-block">
+          <h2>Auto Remediation Architecture</h2>
+          <p>
+            The remediation workflow starts in Wiz. A custom control detects a misconfigured resource, then a
+            Wiz automation rule sends the finding payload into an AWS event pipeline. The platform account
+            validates and routes the event before a remediation Lambda assumes a controlled role in the customer
+            account and applies the approved fix.
+          </p>
+
+          <div class="architecture-lanes" aria-label="Wiz to AWS cross-account remediation flow">
+            <div class="architecture-lane">
+              <div class="lane-title">
+                <span>Detection Plane</span>
+                <strong>Wiz</strong>
+              </div>
+              <div class="lane-nodes">
+                <div class="flow-node wiz">
+                  <span>01</span>
+                  <strong>Wiz Control</strong>
+                  <p>Detects a policy violation or cloud resource misconfiguration.</p>
+                </div>
+                <div class="flow-node wiz">
+                  <span>02</span>
+                  <strong>Automation Rule</strong>
+                  <p>Triggers on the control result and sends a structured finding payload.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="architecture-lane">
+              <div class="lane-title">
+                <span>Platform Account</span>
+                <strong>AWS Event Pipeline</strong>
+              </div>
+              <div class="lane-nodes">
+                <div class="flow-node aws">
+                  <span>03</span>
+                  <strong>SNS Topic</strong>
+                  <p>Receives the event and fans out messages for downstream processing.</p>
+                </div>
+                <div class="flow-node aws">
+                  <span>04</span>
+                  <strong>SQS Queue</strong>
+                  <p>Buffers events, supports retry behavior, and protects Lambda from spikes.</p>
+                </div>
+                <div class="flow-node aws">
+                  <span>05</span>
+                  <strong>Lambda Orchestrator</strong>
+                  <p>Validates eligibility, loads config, and selects a remediation path.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="architecture-lane">
+              <div class="lane-title">
+                <span>Trust Boundary</span>
+                <strong>Cross-Account Access</strong>
+              </div>
+              <div class="lane-nodes">
+                <div class="flow-node identity">
+                  <span>06</span>
+                  <strong>AssumeRole</strong>
+                  <p>Uses external ID, scoped permissions, and traceable session context.</p>
+                </div>
+                <div class="flow-node customer">
+                  <span>07</span>
+                  <strong>Customer Account</strong>
+                  <p>Applies the approved resource update in the affected account.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="architecture-lane">
+              <div class="lane-title">
+                <span>Evidence Plane</span>
+                <strong>Audit + Feedback</strong>
+              </div>
+              <div class="lane-nodes">
+                <div class="flow-node audit">
+                  <span>08</span>
+                  <strong>Audit Log</strong>
+                  <p>Records decision, action, status, failure reason, and evidence.</p>
+                </div>
+                <div class="flow-node audit">
+                  <span>09</span>
+                  <strong>Notify / Review</strong>
+                  <p>Routes skipped, failed, or sensitive findings for human review.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="architecture-notes" aria-label="Architecture safeguards">
+            <div>
+              <strong>Event durability</strong>
+              <p>SQS absorbs bursts, supports retry, and gives failed events a replay path.</p>
+            </div>
+            <div>
+              <strong>Least privilege</strong>
+              <p>Customer account remediation roles expose only the APIs needed for approved fixes.</p>
+            </div>
+            <div>
+              <strong>Decision evidence</strong>
+              <p>Every automated, skipped, and failed action is tied back to the Wiz finding.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            Some cloud security findings are repetitive and time-sensitive, but remediation can create risk if
+            automation changes resources without understanding context. The goal was to automate only the cases
+            where conditions were clear and defensible.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Created Wiz controls that identify specific misconfiguration patterns and provide a consistent finding payload.</li>
+            <li>Configured Wiz automation rules to trigger only when the control detects a qualifying resource.</li>
+            <li>Used SNS and SQS as a durable handoff between Wiz and Lambda so remediation events can be buffered and retried.</li>
+            <li>Used Lambda to validate payload shape, severity, affected resource, account metadata, and remediation eligibility.</li>
+            <li>Assumed a scoped remediation role in the customer account before applying any cloud resource change.</li>
+            <li>Defined remediation eligibility checks for severity, resource type, environment, ownership, and exception state.</li>
+            <li>Separated detection, decision, action, and audit logging so each step could be tested independently.</li>
+            <li>Routed ambiguous findings, protected environments, and missing metadata to notification or manual review instead of automatic action.</li>
+          </ul>
+        </article>
+
+        <article id="implementation" class="case-block">
+          <h2>Implementation Details</h2>
+          <p>
+            The playbook separates the remediation decision from the remediation action. A finding must pass
+            eligibility checks before any change is attempted, and ambiguous cases move to notification or review
+            rather than automatic execution.
+          </p>
+          <pre><code>eligible_for_remediation =
+  severity in ["HIGH", "CRITICAL"]
+  and environment != "restricted-production"
+  and owner is not None
+  and exception_status != "approved"
+  and resource_type in approved_resource_types
+  and proposed_change in allowed_actions</code></pre>
+          <p>
+            Cross-account remediation uses a dedicated execution role in the platform account and a customer
+            account role that grants only the permissions needed for the approved fix. The assumed-role session
+            should include traceable session names and correlation IDs from the Wiz payload so actions can be
+            connected back to the original finding.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Trust Boundaries and Failure Handling</h2>
+          <ul>
+            <li><strong>Wiz to AWS:</strong> Only accepted automation payloads are processed; malformed events are logged and rejected.</li>
+            <li><strong>SNS to SQS:</strong> Queueing creates back pressure protection and gives failed events a retry path.</li>
+            <li><strong>Lambda to customer account:</strong> Remediation requires explicit role trust, scoped permissions, and account allowlisting.</li>
+            <li><strong>Failure path:</strong> Failed role assumption, missing resource context, or denied API calls are recorded with the finding ID and routed for review.</li>
+            <li><strong>Audit path:</strong> Every skipped, failed, and successful decision writes evidence for security operations and customer reporting.</li>
+          </ul>
+        </article>
+
+        <article id="outcomes" class="case-block">
+          <h2>Outcomes</h2>
+          <div class="outcome-list">
+            <div>
+              <strong>Guardrailed response</strong>
+              <p>Remediation only proceeds when severity, environment, owner, exception, and action checks align.</p>
+            </div>
+            <div>
+              <strong>Event-driven scale</strong>
+              <p>SNS and SQS decouple Wiz from Lambda so findings can be processed reliably without losing events during spikes.</p>
+            </div>
+            <div>
+              <strong>Human review where needed</strong>
+              <p>Findings with missing metadata or sensitive production context are routed for review instead of changed blindly.</p>
+            </div>
+            <div>
+              <strong>Auditable changes</strong>
+              <p>Each decision can be logged with the finding, resource, eligibility result, action, and final status.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Controls Demonstrated</h2>
+          <ul>
+            <li>Reduced response time for recurring high-confidence misconfigurations.</li>
+            <li>Improved trust in automation by making the decision path explicit.</li>
+            <li>Kept human review in the loop for cases where automated action was not safe enough.</li>
+            <li>Produced audit records that explain what was changed and why.</li>
+          </ul>
+        </article>
+
+        <article id="production" class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Policy-as-code rules for remediation eligibility and exception handling.</li>
+            <li>Change approval integration for sensitive production resources.</li>
+            <li>Rollback metadata for actions that can be safely reversed.</li>
+            <li>Dead-letter queue processing and replay tooling for failed remediation events.</li>
+            <li>Per-customer role permission reviews to keep remediation access least privilege over time.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Automation engineer focused on remediation design</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Wiz-triggered remediation, event routing, cross-account role assumption, execution safety, and evidence</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>Wiz</span>
+              <span>SNS</span>
+              <span>SQS</span>
+              <span>Lambda</span>
+              <span>IAM AssumeRole</span>
+              <span>AWS</span>
+              <span>Audit Logs</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

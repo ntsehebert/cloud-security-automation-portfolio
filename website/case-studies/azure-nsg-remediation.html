@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Azure NSG exposure detection and remediation." />
+  <title>Azure NSG Exposure Remediation | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | Azure | Network Security</p>
+      <h1>Azure NSG exposure remediation for risky inbound rules.</h1>
+      <p class="case-summary">
+        Designed a workflow to identify overly permissive Azure Network Security Group rules, evaluate whether
+        they were safe to change, and support controlled remediation.
+      </p>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <div class="case-visual" aria-label="Azure NSG remediation workflow">
+          <div>NSG Rule</div>
+          <div>Source + Port</div>
+          <div>Risk Decision</div>
+          <div>Rule Update</div>
+        </div>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            Public inbound access on sensitive ports is one of the clearest cloud exposure risks, but NSG rules
+            can be complex. A remediation workflow needs to understand source ranges, destination ports, protocol,
+            priority, direction, and whether the rule is intentionally approved.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Evaluated inbound NSG rules for broad sources such as internet-wide CIDR ranges.</li>
+            <li>Checked risky ports and services before deciding whether a rule qualified for remediation.</li>
+            <li>Preserved context such as priority, description, resource group, subscription, and owner metadata.</li>
+            <li>Designed safe handling for allowlisted rules, business exceptions, and cases requiring human review.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Value</h2>
+          <ul>
+            <li>Created a repeatable pattern for reducing accidental public exposure in Azure.</li>
+            <li>Helped separate genuinely risky rules from approved or context-dependent access.</li>
+            <li>Made remediation decisions auditable and easier to discuss with application owners.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Azure Resource Graph queries for broad inventory and drift detection.</li>
+            <li>Integration with change tickets for production NSG updates.</li>
+            <li>Policy reporting to show exposure trends by subscription and application team.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Azure security automation engineer</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Network exposure, rule evaluation, and safe remediation</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>Azure</span>
+              <span>NSG</span>
+              <span>Python</span>
+              <span>Wiz</span>
+              <span>Policy</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

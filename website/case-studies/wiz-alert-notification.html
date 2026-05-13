@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Wiz alert notification playbooks for cloud security operations." />
+  <title>Wiz Alert Notification Playbooks | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | Wiz Alerts | Python</p>
+      <h1>Wiz alert notification playbooks that turn findings into action.</h1>
+      <p class="case-summary">
+        Designed notification workflows that validate Wiz findings, enrich context, determine ownership,
+        and send clear messages to the teams responsible for remediation.
+      </p>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <div class="case-visual" aria-label="Alert notification architecture">
+          <div>Wiz Finding</div>
+          <div>Payload Check</div>
+          <div>Owner Routing</div>
+          <div>Team Message</div>
+        </div>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            Cloud security findings lose impact when they arrive without ownership, context, or a clear ask.
+            The goal was to move from generic alert noise to focused notifications that engineers could act on.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Validated incoming Wiz payloads before routing or sending notifications.</li>
+            <li>Enriched messages with severity, resource details, cloud account, project, exposure context, and remediation guidance.</li>
+            <li>Used ownership signals such as tags, project metadata, and environment fields to route findings.</li>
+            <li>Included fallback paths for missing owners, malformed payloads, and non-actionable findings.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Value</h2>
+          <ul>
+            <li>Made alerts easier for engineering teams to understand and prioritize.</li>
+            <li>Reduced back-and-forth during triage by including the evidence needed to act.</li>
+            <li>Improved accountability by sending findings to the most relevant owner or escalation queue.</li>
+            <li>Created consistent message formatting across multiple alert types.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Notification templates for different finding categories and severity levels.</li>
+            <li>Deduplication logic to avoid repeating the same alert during an active incident window.</li>
+            <li>Delivery metrics for sent, failed, acknowledged, and remediated notifications.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Alert workflow designer and Python automation engineer</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Payload validation, enrichment, routing, and notification quality</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>Wiz</span>
+              <span>Python</span>
+              <span>JSON</span>
+              <span>Messaging</span>
+              <span>Ops</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Wiz API and GraphQL automation for scalable cloud security operations." />
+  <title>Wiz API and GraphQL Automation | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | Wiz API | GraphQL | Python</p>
+      <h1>Wiz API and GraphQL automation for scalable security operations.</h1>
+      <p class="case-summary">
+        Built an automation pattern for querying Wiz issue data, mapping security controls, enriching finding
+        context, and supporting repeatable workflow updates without relying on manual console work.
+      </p>
+      <div class="case-nav" aria-label="Case study sections">
+        <a href="#implementation">Implementation</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#production">Production</a>
+      </div>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <div class="case-visual" aria-label="Wiz API automation architecture">
+          <div>GraphQL Query</div>
+          <div>Issue Context</div>
+          <div>Control Mapping</div>
+          <div>Workflow Update</div>
+        </div>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            Security teams often need more context than a single finding view provides. The problem was to
+            collect issue details, affected resources, project ownership, severity, control relationships, and
+            routing signals in a repeatable way.
+          </p>
+          <p>
+            Manual lookups do not scale when findings span multiple teams, cloud accounts, and remediation paths.
+            The automation needed to make Wiz data easier to query, normalize, and reuse across playbooks.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Designed reusable GraphQL query patterns for issue details, entity metadata, projects, controls, and status fields.</li>
+            <li>Normalized response data so downstream playbooks could use predictable Python objects instead of raw nested API payloads.</li>
+            <li>Mapped Wiz fields to routing decisions such as owner, environment, cloud provider, exposure type, and remediation eligibility.</li>
+            <li>Added defensive handling for missing fields, empty result sets, pagination, authentication failures, and API errors.</li>
+          </ul>
+        </article>
+
+        <article id="implementation" class="case-block">
+          <h2>Implementation Details</h2>
+          <p>
+            The workflow treats the Wiz API as the source of truth, then converts the response into a smaller
+            automation object that other playbooks can reuse. That object contains the fields most useful for
+            security operations: issue ID, severity, status, resource name, cloud platform, project, owner,
+            control, exposure path, and remediation signal.
+          </p>
+          <pre><code>query IssuesForAutomation($first: Int!, $after: String) {
+  issues(first: $first, after: $after) {
+    nodes {
+      id
+      status
+      severity
+      entity { name type cloudPlatform }
+      project { name }
+      control { name severity }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}</code></pre>
+        </article>
+
+        <article id="outcomes" class="case-block">
+          <h2>Outcomes</h2>
+          <div class="outcome-list">
+            <div>
+              <strong>Faster triage</strong>
+              <p>Packaged owner, severity, resource, project, and control context before an analyst opened the finding.</p>
+            </div>
+            <div>
+              <strong>Reusable data model</strong>
+              <p>Created a normalized structure that alerting, remediation, and reporting workflows could share.</p>
+            </div>
+            <div>
+              <strong>Cleaner operations</strong>
+              <p>Reduced dependence on manual console research by making API-driven context available to playbooks.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Controls Demonstrated</h2>
+          <ul>
+            <li>Reduced manual research time during triage by packaging the context an analyst or engineer needs first.</li>
+            <li>Improved consistency across alerting, notification, remediation, and audit workflows.</li>
+            <li>Created a foundation for automated control mapping and issue lifecycle updates.</li>
+            <li>Made security decisions easier to explain because each workflow used the same source data and decision fields.</li>
+          </ul>
+        </article>
+
+        <article id="production" class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Unit tests around response parsing and pagination behavior.</li>
+            <li>A small query library with named GraphQL operations and typed response models.</li>
+            <li>Rate-limit handling, retry policy, and structured logs for production observability.</li>
+            <li>A dashboard view showing API-driven workflow volume, failures, and issue outcomes.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Cloud security automation engineer</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Wiz data retrieval, enrichment, routing, and workflow support</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>Wiz API</span>
+              <span>GraphQL</span>
+              <span>Python</span>
+              <span>JSON</span>
+              <span>Automation</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

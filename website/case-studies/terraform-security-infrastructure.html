@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Terraform security infrastructure for a CloudFront and private S3 portfolio site." />
+  <title>Terraform Security Infrastructure | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | Terraform | AWS</p>
+      <h1>Secure static portfolio infrastructure with Terraform, S3, and CloudFront.</h1>
+      <p class="case-summary">
+        Built repeatable AWS infrastructure for this portfolio with private S3 storage, CloudFront delivery,
+        origin access control, encryption, versioning, tagging, and clean outputs.
+      </p>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <div class="case-visual" aria-label="Terraform AWS static site architecture">
+          <div>Terraform</div>
+          <div>Private S3</div>
+          <div>CloudFront OAC</div>
+          <div>HTTPS Site</div>
+        </div>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            A professional cloud security portfolio should demonstrate more than a static page. The hosting
+            layer needed to show secure defaults, repeatable infrastructure, and a realistic path toward a
+            custom domain and production deployment.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Created an S3 bucket with public access blocked and server-side encryption enabled.</li>
+            <li>Enabled bucket versioning to preserve object history and support safer updates.</li>
+            <li>Configured CloudFront with origin access control so users access content through the distribution, not public S3.</li>
+            <li>Added custom error responses and Terraform outputs for the site URL, bucket, and distribution ID.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Value</h2>
+          <ul>
+            <li>Demonstrates least-privilege access to static site content.</li>
+            <li>Keeps infrastructure repeatable instead of manually configured in the console.</li>
+            <li>Creates a clean base for adding Route 53, ACM, deployment automation, and monitoring.</li>
+          </ul>
+        </article>
+
+        <article class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Route 53 and ACM for a custom HTTPS domain.</li>
+            <li>Automated upload of website assets and CloudFront invalidation.</li>
+            <li>Access logs, security headers, and CI validation for Terraform changes.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Infrastructure-as-code engineer</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Secure hosting, repeatability, and deployment readiness</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>Terraform</span>
+              <span>AWS S3</span>
+              <span>CloudFront</span>
+              <span>IAM</span>
+              <span>OAC</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

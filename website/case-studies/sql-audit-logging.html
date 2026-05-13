@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on SQL audit logging and metrics for security automation." />
+  <title>Audit Logging and Metrics | Hebert Ntse</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#architecture">Architecture</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <p class="eyebrow">Case Study | SQL | Audit Evidence</p>
+      <h1>Audit logging and metrics for security automation decisions.</h1>
+      <p class="case-summary">
+        Implemented an audit pattern that records alert handling, remediation decisions, exceptions,
+        failures, and operational outcomes for cloud security workflows.
+      </p>
+      <div class="case-nav" aria-label="Case study sections">
+        <a href="#implementation">Implementation</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#production">Production</a>
+      </div>
+    </section>
+
+    <section class="case-layout">
+      <div class="case-content">
+        <div class="case-visual" aria-label="Audit logging workflow">
+          <div>Input</div>
+          <div>Decision</div>
+          <div>Action</div>
+          <div>Evidence</div>
+        </div>
+
+        <article class="case-block">
+          <h2>Challenge</h2>
+          <p>
+            Automation is only trustworthy when teams can explain what happened. Security workflows need to
+            record the finding, decision inputs, action taken, result, and failure state so operations and
+            leadership can review outcomes.
+          </p>
+        </article>
+
+        <article class="case-block">
+          <h2>Approach</h2>
+          <ul>
+            <li>Defined audit fields for finding ID, resource, owner, severity, workflow name, action, status, and timestamp.</li>
+            <li>Captured exception paths, skipped remediation reasons, failed notifications, and manual review states.</li>
+            <li>Designed records to support both detailed investigation and summary reporting.</li>
+            <li>Kept audit writes separate from action logic so failed logging could be handled deliberately.</li>
+          </ul>
+        </article>
+
+        <article id="implementation" class="case-block">
+          <h2>Implementation Details</h2>
+          <p>
+            The audit model is designed around explainability. Each row should tell the story of a workflow run:
+            what finding came in, what decision was made, what action was attempted, whether it succeeded, and
+            what evidence supports that result.
+          </p>
+          <pre><code>automation_audit_log
+  finding_id
+  workflow_name
+  cloud_provider
+  resource_id
+  owner
+  severity
+  decision
+  action_taken
+  result_status
+  failure_reason
+  created_at</code></pre>
+        </article>
+
+        <article id="outcomes" class="case-block">
+          <h2>Outcomes</h2>
+          <div class="outcome-list">
+            <div>
+              <strong>Evidence by default</strong>
+              <p>Workflow runs produce a record of inputs, decisions, action, result, and exception state.</p>
+            </div>
+            <div>
+              <strong>Operational visibility</strong>
+              <p>Security teams can report on notification failures, remediation skips, exception patterns, and workflow volume.</p>
+            </div>
+            <div>
+              <strong>Better troubleshooting</strong>
+              <p>Failures can be grouped by reason instead of being hidden inside ad hoc script output.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-block">
+          <h2>Security Controls Demonstrated</h2>
+          <ul>
+            <li>Gave teams evidence for what automation did and why.</li>
+            <li>Supported operational metrics such as alert volume, remediation outcomes, failures, and exception trends.</li>
+            <li>Made it easier to troubleshoot workflow gaps and improve playbook reliability.</li>
+          </ul>
+        </article>
+
+        <article id="production" class="case-block">
+          <h2>Production Considerations</h2>
+          <ul>
+            <li>Dashboards for workflow health, failure categories, and remediation cycle time.</li>
+            <li>Retention policy and data classification for audit records.</li>
+            <li>Schema migrations and automated validation for audit table changes.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Project Snapshot</h3>
+        <div class="meta-list">
+          <div>
+            <span class="meta-label">Role</span>
+            <p>Security automation and reporting engineer</p>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <p>Evidence, operational metrics, troubleshooting, and workflow accountability</p>
+          </div>
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="tech-list">
+              <span>SQL</span>
+              <span>Python</span>
+              <span>Logging</span>
+              <span>Metrics</span>
+              <span>Audit</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
