@@ -471,6 +471,8 @@ h3 {
   color: var(--text);
   font-size: 12px;
   font-weight: 900;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
   padding: 8px;
   text-align: center;
 }
