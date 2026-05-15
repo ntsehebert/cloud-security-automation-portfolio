@@ -469,12 +469,14 @@ h3 {
   border-radius: var(--radius);
   background: rgba(4, 12, 24, 0.62);
   color: var(--text);
-  font-size: 12px;
+  font-size: clamp(11px, 0.85vw, 12px);
   font-weight: 900;
   line-height: 1.2;
-  overflow-wrap: anywhere;
+  hyphens: none;
+  overflow-wrap: normal;
   padding: 8px;
   text-align: center;
+  word-break: normal;
 }
 
 .feature-preview span {
