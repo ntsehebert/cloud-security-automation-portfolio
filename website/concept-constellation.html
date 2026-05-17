@@ -8,18 +8,17 @@
   <meta property="og:description" content="A cloud security automation portfolio focused on Wiz, AWS, Terraform, Python, remediation guardrails, and evidence-first operations." />
   <meta property="og:type" content="website" />
   <title>Hebert Ntse | Cloud Security Automation</title>
-  <link rel="icon" href="assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
-  <link rel="stylesheet" href="v2/styles.css?v=20260515-v2about" />
+  <link rel="stylesheet" href="concept-constellation.css?v=20260515-v2" />
 </head>
 <body>
   <header class="topbar">
     <a class="mark" href="index.html">Hebert Ntse</a>
-    <nav aria-label="Primary navigation">
-      <a href="#about">About</a>
+    <nav aria-label="Concept navigation">
+      <a href="index.html">Original</a>
       <a href="#systems">Systems</a>
       <a href="#principles">Principles</a>
-      <a href="#certifications">Certifications</a>
-      <a href="v2/case-studies/wiz-auto-remediation.html">Case Study</a>
+      <a href="case-studies/wiz-auto-remediation.html">Case Study</a>
+      <a href="assets/Nsoh-Mofor-CV.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
     </nav>
   </header>
 
@@ -53,18 +52,14 @@
       </div>
 
       <div class="mission-card">
-        <span>Cloud Security Engineer | AWS | Azure | Wiz | Terraform | Python</span>
+        <span>Version 2 · Cloud Security Automation</span>
         <h1>Risk signals routed into safe, auditable response.</h1>
         <p>
           I build Wiz-driven CSPM workflows, remediation playbooks, Terraform guardrails, and audit-ready
           automation for teams that need speed without losing control.
         </p>
-        <div class="availability-note">
-          <span></span>
-          <strong>Open to Cloud Security Engineer, DevSecOps, and Security Automation roles.</strong>
-        </div>
         <div class="mission-actions">
-          <a class="primary" href="v2/case-studies/wiz-auto-remediation.html">View Architecture</a>
+          <a class="primary" href="case-studies/wiz-auto-remediation.html">View Architecture</a>
           <a href="assets/Nsoh-Mofor-CV.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
           <a href="https://www.linkedin.com/in/hebertntse" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/ntsehebert/cloud-security-automation-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -79,53 +74,10 @@
       </aside>
     </section>
 
-    <section id="about" class="about-section">
-      <div class="section-lead">
-        <span>About</span>
-        <h2>Cloud security engineer focused on automation, evidence, and safe remediation.</h2>
-      </div>
-      <div class="about-grid">
-        <article class="about-copy">
-          <p>
-            I build practical cloud security workflows across AWS, Azure, Wiz, Terraform, Python, and SQL.
-            My work focuses on turning security findings into repeatable operational processes: enrich the
-            context, route to the right owner, validate remediation safety, and leave a clean audit trail.
-          </p>
-          <p>
-            This portfolio shows how I think as an engineer: not just identifying cloud risk, but designing
-            systems that help teams respond faster while keeping control over production change.
-          </p>
-        </article>
-        <aside class="about-facts" aria-label="Professional focus">
-          <div><span>Role Targets</span><strong>Cloud Security Engineer · DevSecOps · Security Automation</strong></div>
-          <div><span>Core Strength</span><strong>Wiz CSPM workflows · Python playbooks · Terraform guardrails</strong></div>
-          <div><span>Portfolio Theme</span><strong>Reduce cloud risk with ownership context, safety checks, and audit evidence</strong></div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="certifications" class="certification-section">
-      <div class="section-lead">
-        <span>Credentials</span>
-        <h2>Certifications that back the cloud security architecture work.</h2>
-      </div>
-      <div class="cert-grid" aria-label="Professional certifications">
-        <article>
-          <span>AWS</span>
-          <strong>AWS Certified Security - Specialty</strong>
-          <p>Security architecture, identity, logging, monitoring, data protection, and incident response across AWS environments.</p>
-        </article>
-        <article>
-          <span>AWS</span>
-          <strong>AWS Certified Solutions Architect - Associate</strong>
-          <p>Resilient cloud design, networking, IAM, storage, compute, and cost-aware architecture foundations.</p>
-        </article>
-        <article>
-          <span>HashiCorp</span>
-          <strong>HashiCorp Certified: Terraform Associate</strong>
-          <p>Infrastructure as code, reusable modules, state management, secure delivery patterns, and repeatable cloud provisioning.</p>
-        </article>
-      </div>
+    <section class="signal-strip" aria-label="Professional certifications">
+      <div><span>AWS</span><strong>Security Specialty</strong></div>
+      <div><span>AWS</span><strong>Solutions Architect Associate</strong></div>
+      <div><span>HashiCorp</span><strong>Terraform Associate</strong></div>
     </section>
 
     <section id="systems" class="work-board">
@@ -134,33 +86,18 @@
         <h2>Automation patterns built around controls, ownership, trust, and evidence.</h2>
       </div>
       <div class="system-list">
-        <a href="v2/case-studies/wiz-auto-remediation.html">
+        <a href="case-studies/wiz-auto-remediation.html">
           <span>01</span>
           <strong>Wiz Auto Remediation</strong>
           <p>Control result to SNS, SQS, Lambda, Assume Role, customer-account action, and audit record.</p>
         </a>
-        <a href="v2/case-studies/wiz-alert-notification.html">
+        <a href="case-studies/wiz-alert-notification.html">
           <span>02</span>
           <strong>Alert Notification Playbooks</strong>
           <p>Validate payloads, enrich context, route issues, and send clear messages to owners.</p>
         </a>
-        <a href="v2/case-studies/wiz-api-graphql-automation.html">
+        <a href="case-studies/terraform-security-infrastructure.html">
           <span>03</span>
-          <strong>Wiz API and GraphQL Automation</strong>
-          <p>Query Wiz issues, map controls, update automation logic, and support scalable security operations.</p>
-        </a>
-        <a href="v2/case-studies/azure-nsg-remediation.html">
-          <span>04</span>
-          <strong>Azure NSG Exposure Remediation</strong>
-          <p>Detect and remediate risky inbound NSG rules using source, port, priority, and rule intent.</p>
-        </a>
-        <a href="v2/case-studies/sql-audit-logging.html">
-          <span>05</span>
-          <strong>Audit Logging and Metrics</strong>
-          <p>Track decisions, exceptions, failures, and operational metrics for audit-ready reporting.</p>
-        </a>
-        <a href="v2/case-studies/terraform-security-infrastructure.html">
-          <span>06</span>
           <strong>Terraform Security Infrastructure</strong>
           <p>Private S3, CloudFront, ACM, Route 53, versioning, encryption, and deployment discipline.</p>
         </a>

@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Case study on Wiz auto remediation playbooks for cloud security misconfigurations." />
   <title>Auto Remediation Playbooks | Hebert Ntse</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-premium" />
 </head>
 <body>
   <header class="nav">
-    <a class="logo" href="../index.html">Hebert Ntse</a>
+    <a class="logo" href="../original.html">Hebert Ntse</a>
     <nav aria-label="Primary navigation">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#architecture">Architecture</a>
-      <a href="../index.html#skills">Skills</a>
-      <a href="../index.html#contact">Contact</a>
+      <a href="../original.html#work">Work</a>
+      <a href="../original.html#architecture">Architecture</a>
+      <a href="../original.html#skills">Skills</a>
+      <a href="../original.html#contact">Contact</a>
     </nav>
   </header>
 
   <main>
     <section class="case-hero">
-      <a class="back-link" href="../index.html#work">Back to portfolio</a>
+      <a class="back-link" href="../original.html#work">Back to portfolio</a>
       <p class="eyebrow">Case Study | Remediation | Guardrails</p>
       <h1>Auto remediation playbooks with safety checks built in.</h1>
       <p class="case-summary">
@@ -30,6 +30,8 @@
       <div class="case-nav" aria-label="Case study sections">
         <a href="#flow">Architecture</a>
         <a href="#implementation">Implementation</a>
+        <a href="#guardrails">Guardrails</a>
+        <a href="#decision-matrix">Decision Matrix</a>
         <a href="#outcomes">Outcomes</a>
         <a href="#production">Production</a>
       </div>
@@ -188,6 +190,74 @@
             should include traceable session names and correlation IDs from the Wiz payload so actions can be
             connected back to the original finding.
           </p>
+        </article>
+
+        <article id="guardrails" class="case-block">
+          <h2>Remediation Guardrails</h2>
+          <p>
+            The safest remediation system is not the one that changes everything automatically. It is the one
+            that can tell the difference between a safe repeatable fix and a finding that needs human judgment.
+          </p>
+          <div class="guardrail-grid">
+            <div>
+              <strong>Eligibility controls</strong>
+              <span>Severity, control ID, resource type, account, and environment must match the approved remediation catalog.</span>
+            </div>
+            <div>
+              <strong>Ownership checks</strong>
+              <span>Missing owner or unclear application context routes to notification instead of automatic change.</span>
+            </div>
+            <div>
+              <strong>Exception handling</strong>
+              <span>Approved exceptions, temporary waivers, or suppression tags are logged and skipped with evidence.</span>
+            </div>
+            <div>
+              <strong>Blast-radius control</strong>
+              <span>Production and restricted environments can require approval, dry-run mode, or a narrower action set.</span>
+            </div>
+            <div>
+              <strong>Credential safety</strong>
+              <span>Cross-account access uses scoped AssumeRole trust instead of long-lived credentials.</span>
+            </div>
+            <div>
+              <strong>Failure path</strong>
+              <span>Denied API calls, failed role assumption, and unsupported resources are recorded and sent for review.</span>
+            </div>
+          </div>
+        </article>
+
+        <article id="decision-matrix" class="case-block">
+          <h2>Decision Matrix</h2>
+          <p>
+            A decision matrix keeps remediation predictable. Each finding is evaluated against policy signals
+            before the workflow decides whether to remediate, notify, skip, or escalate.
+          </p>
+          <div class="decision-table" role="table" aria-label="Auto remediation decision matrix">
+            <div class="decision-row decision-head" role="row">
+              <span role="columnheader">Signal</span>
+              <span role="columnheader">Automation Decision</span>
+            </div>
+            <div class="decision-row" role="row">
+              <span role="cell">Critical exposure, approved control, owner found, no exception</span>
+              <span role="cell">Auto-remediate and write audit evidence</span>
+            </div>
+            <div class="decision-row" role="row">
+              <span role="cell">Critical exposure, owner missing</span>
+              <span role="cell">Notify security queue and application team lookup path</span>
+            </div>
+            <div class="decision-row" role="row">
+              <span role="cell">Exception tag or approved waiver present</span>
+              <span role="cell">Skip remediation, record exception reference, and close the loop</span>
+            </div>
+            <div class="decision-row" role="row">
+              <span role="cell">Restricted production resource</span>
+              <span role="cell">Require approval or dry-run evidence before change</span>
+            </div>
+            <div class="decision-row" role="row">
+              <span role="cell">Unsupported resource type or malformed payload</span>
+              <span role="cell">Reject event, log failure reason, and route for review</span>
+            </div>
+          </div>
         </article>
 
         <article class="case-block">

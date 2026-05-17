@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Wiz API and GraphQL automation for scalable security operations." />
+  <title>Wiz API and GraphQL Automation | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-v2about" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#systems">Systems</a>
+      <a href="../index.html#principles">Principles</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#systems">Back to systems</a>
+    <section class="case-intro">
+      <div>
+        <span>Case Study · API · GraphQL</span>
+        <h1>Wiz API and GraphQL automation for scalable security operations.</h1>
+        <p>
+          Built API-driven workflows for querying Wiz issues, mapping controls, updating automation logic, and
+          supporting security operations at scale.
+        </p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>Wiz API · GraphQL · Python</strong></div>
+        <div><span>Pattern</span><strong>Security data retrieval and normalization</strong></div>
+        <div><span>Outcome</span><strong>Repeatable issue and control automation</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow"><div>Auth</div><div>Query</div><div>Filter</div><div>Normalize</div><div>Decide</div><div>Report</div></div>
+        <article class="case-section">
+          <span>Challenge</span>
+          <h2>Manual issue review does not scale.</h2>
+          <p>
+            Cloud security operations often need to query large sets of issues, controls, projects, and resource
+            metadata. The goal was to make Wiz data easier to retrieve, filter, and feed into repeatable
+            automation workflows.
+          </p>
+        </article>
+        <article class="case-section">
+          <span>Approach</span>
+          <h2>Use GraphQL to retrieve precise security context.</h2>
+          <ul>
+            <li>Authenticated to the Wiz API and queried issues using GraphQL.</li>
+            <li>Filtered by severity, status, control, project, resource type, and cloud account.</li>
+            <li>Normalized results into structures that Python playbooks can consume consistently.</li>
+            <li>Mapped findings to automation decisions, reporting views, and operational queues.</li>
+            <li>Handled pagination, API failures, and missing fields as explicit workflow states.</li>
+          </ul>
+        </article>
+        <article class="case-section">
+          <span>Implementation</span>
+          <h2>API output becomes automation input.</h2>
+          <pre><code>query issues($filter: IssueFilters) {
+  issues(filterBy: $filter) {
+    nodes {
+      id
+      severity
+      status
+      entitySnapshot { name type }
+      control { name }
+    }
+  }
+}</code></pre>
+        </article>
+      </div>
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>API workflow focused on scalable querying, normalization, pagination handling, and automation readiness.</p>
+        <a href="wiz-alert-notification.html">Alert Notification</a>
+        <a href="wiz-auto-remediation.html">Auto Remediation</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

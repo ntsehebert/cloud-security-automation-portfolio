@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on SQL audit logging and metrics for security automation decisions." />
+  <title>Audit Logging and Metrics | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-v2about" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#systems">Systems</a>
+      <a href="../index.html#principles">Principles</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#systems">Back to systems</a>
+    <section class="case-intro">
+      <div>
+        <span>Case Study · Evidence · Metrics</span>
+        <h1>Audit logging and metrics for security automation decisions.</h1>
+        <p>
+          SQL-based audit trails for automation activity, remediation status, exceptions, failures, and
+          leadership-ready operational metrics.
+        </p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>SQL · Python · Automation Events</strong></div>
+        <div><span>Pattern</span><strong>Decision and action evidence model</strong></div>
+        <div><span>Outcome</span><strong>Reviewable security operations history</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow"><div>Finding</div><div>Decision</div><div>Action</div><div>Status</div><div>Exception</div><div>Metrics</div></div>
+        <article class="case-section">
+          <span>Challenge</span>
+          <h2>Automation needs evidence, not just execution.</h2>
+          <p>
+            Security automation becomes hard to trust if teams cannot explain what happened, why a decision was
+            made, what action was taken, and whether the action succeeded. The goal was to design an audit model
+            that makes automation decisions reviewable.
+          </p>
+        </article>
+        <article class="case-section">
+          <span>Approach</span>
+          <h2>Capture every important decision point.</h2>
+          <ul>
+            <li>Recorded finding identifiers, resource IDs, account context, and control metadata.</li>
+            <li>Tracked decision outcome: remediate, notify, skip, fail, or manual review.</li>
+            <li>Captured exception state, ownership context, and failure reason.</li>
+            <li>Stored action timestamps, status, and remediation result.</li>
+            <li>Supported reporting metrics for recurring findings and automation performance.</li>
+          </ul>
+        </article>
+        <article class="case-section">
+          <span>Implementation</span>
+          <h2>A compact schema for repeatable evidence.</h2>
+          <pre><code>automation_audit(
+  finding_id,
+  cloud_account,
+  resource_id,
+  control_name,
+  decision,
+  action_taken,
+  status,
+  exception_state,
+  failure_reason,
+  created_at
+)</code></pre>
+        </article>
+      </div>
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>Evidence model for decision traceability, operational metrics, exception review, and leadership reporting.</p>
+        <a href="wiz-auto-remediation.html">Auto Remediation</a>
+        <a href="terraform-security-infrastructure.html">Terraform Infrastructure</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

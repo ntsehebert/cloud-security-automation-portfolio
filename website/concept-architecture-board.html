@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Architecture board homepage concept for Hebert Ntse cloud security automation portfolio." />
+  <title>Architecture Board Concept | Hebert Ntse</title>
+  <link rel="stylesheet" href="concepts.css?v=20260515-b" />
+</head>
+<body>
+  <header class="concept-nav">
+    <a class="brand" href="index.html">Hebert Ntse</a>
+    <nav aria-label="Concept navigation">
+      <a href="index.html">Current Site</a>
+      <a href="concept-command-center.html">Concept A</a>
+      <a href="case-studies/wiz-auto-remediation.html">Standout Case Study</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="blueprint-hero">
+      <div class="blueprint-copy">
+        <p class="eyebrow">Concept B | Security Architecture Blueprint</p>
+        <h1>Designing cloud security workflows that teams can trust.</h1>
+        <p>
+          I build automation around the controls that matter: least privilege, event durability,
+          approval paths, exception handling, and evidence that explains every decision.
+        </p>
+        <div class="availability">Open to cloud security, DevSecOps, and security automation conversations.</div>
+        <div class="btn-row">
+          <a class="btn primary" href="case-studies/wiz-auto-remediation.html">Explore Architecture</a>
+          <a class="btn secondary" href="assets/Nsoh-Mofor-CV.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/hebertntse" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn secondary" href="https://github.com/ntsehebert/cloud-security-automation-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <aside class="architecture-board" aria-label="Cross-account remediation architecture board">
+        <div class="board-title">
+          <span class="eyebrow">Reference Flow</span>
+          <strong>Wiz to AWS Remediation</strong>
+        </div>
+        <div class="lane-grid">
+          <div class="lane">
+            <span>Detection</span>
+            <div class="node">
+              <strong>Wiz Control</strong>
+              <p>Detects a qualifying exposure or policy violation.</p>
+            </div>
+            <div class="node">
+              <strong>Automation Rule</strong>
+              <p>Sends structured context when the control matches.</p>
+            </div>
+          </div>
+          <div class="lane">
+            <span>Platform Pipeline</span>
+            <div class="node">
+              <strong>SNS Topic</strong>
+              <p>Receives the event and fans out downstream processing.</p>
+            </div>
+            <div class="node">
+              <strong>SQS Queue</strong>
+              <p>Buffers spikes, supports retry, and protects Lambda.</p>
+            </div>
+            <div class="node">
+              <strong>Lambda Orchestrator</strong>
+              <p>Validates eligibility and selects the safe action.</p>
+            </div>
+          </div>
+          <div class="lane">
+            <span>Trust + Evidence</span>
+            <div class="node">
+              <strong>Assume Role</strong>
+              <p>Uses scoped trust to reach the customer account.</p>
+            </div>
+            <div class="node">
+              <strong>Audit Trail</strong>
+              <p>Records decision, action, status, and failure reason.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="concept-section">
+      <p class="section-kicker">Decision Discipline</p>
+      <h2>Automation should be predictable before it is powerful.</h2>
+      <p class="section-copy">
+        This concept leads with architecture maturity: the viewer immediately sees that remediation is bounded
+        by context, exception state, production sensitivity, and audit requirements.
+      </p>
+      <div class="matrix" aria-label="Automation decision matrix">
+        <div>
+          <strong>Critical finding, owner resolved, approved control</strong>
+          <span>Auto-remediate and write evidence.</span>
+        </div>
+        <div>
+          <strong>Missing owner or incomplete account metadata</strong>
+          <span>Notify security queue and log missing context.</span>
+        </div>
+        <div>
+          <strong>Exception tag or sensitive production resource</strong>
+          <span>Skip automatic action and route for review.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="concept-section">
+      <p class="section-kicker">Architecture Principles</p>
+      <h2>Senior-level cloud security design habits.</h2>
+      <div class="principle-grid">
+        <div class="principle">
+          <h3>Least privilege</h3>
+          <p>Remediation roles expose only the APIs needed for approved changes.</p>
+        </div>
+        <div class="principle">
+          <h3>Fail closed</h3>
+          <p>Unknown metadata, exceptions, or unsupported resources stop automation.</p>
+        </div>
+        <div class="principle">
+          <h3>Evidence first</h3>
+          <p>Every automated decision produces a record that can be reviewed later.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Concept B preview. Current production homepage remains unchanged until selected.</p>
+  </footer>
+</body>
+</html>

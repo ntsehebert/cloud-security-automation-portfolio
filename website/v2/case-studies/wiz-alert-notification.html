@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Wiz alert notification playbooks for routing cloud security findings." />
+  <title>Wiz Alert Notification | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-v2about" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#systems">Systems</a>
+      <a href="../index.html#principles">Principles</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#systems">Back to systems</a>
+    <section class="case-intro">
+      <div>
+        <span>Case Study · Alerting · Ownership</span>
+        <h1>Wiz alert notification playbooks that turn findings into action.</h1>
+        <p>
+          Designed notification workflows that validate Wiz payloads, enrich context, identify ownership, and
+          route clear messages to responsible teams instead of sending noisy alerts.
+        </p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>Wiz · Python · Webhooks · Messaging</strong></div>
+        <div><span>Pattern</span><strong>Payload validation and owner routing</strong></div>
+        <div><span>Outcome</span><strong>Clear alerts with action context</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow"><div>Wiz</div><div>Payload</div><div>Validate</div><div>Enrich</div><div>Route</div><div>Notify</div></div>
+        <article class="case-section">
+          <span>Challenge</span>
+          <h2>Findings need context before teams can act.</h2>
+          <p>
+            Security alerts often lack ownership, resource context, or remediation guidance. The objective was
+            to turn Wiz findings into clear notifications that explain what happened, who owns it, why it matters,
+            and what action should happen next.
+          </p>
+        </article>
+        <article class="case-section">
+          <span>Approach</span>
+          <h2>Validate, enrich, route, then notify.</h2>
+          <ul>
+            <li>Validated incoming Wiz payload shape and required fields.</li>
+            <li>Mapped cloud resource identifiers to account, environment, and owner context.</li>
+            <li>Used severity, control, tags, and exception state to decide routing priority.</li>
+            <li>Generated concise messages with finding summary, affected resource, and next action.</li>
+            <li>Logged delivery status and failures for operational follow-up.</li>
+          </ul>
+        </article>
+        <article class="case-section">
+          <span>Security Value</span>
+          <h2>Better routing reduces alert fatigue.</h2>
+          <p>
+            The workflow helps teams move from generic findings to accountable action. It supports ownership
+            clarity, consistent triage, and a reviewable record of notification decisions.
+          </p>
+        </article>
+      </div>
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>Alerting workflow focused on payload quality, ownership context, routing logic, and operational clarity.</p>
+        <a href="wiz-auto-remediation.html">Auto Remediation</a>
+        <a href="wiz-api-graphql-automation.html">Wiz API Automation</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on Azure NSG exposure remediation for risky inbound rules." />
+  <title>Azure NSG Exposure Remediation | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-v2about" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#systems">Systems</a>
+      <a href="../index.html#principles">Principles</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#systems">Back to systems</a>
+    <section class="case-intro">
+      <div>
+        <span>Case Study · Azure · Exposure</span>
+        <h1>Azure NSG exposure remediation for risky inbound rules.</h1>
+        <p>
+          Detection and remediation logic for overly permissive Azure NSG rules using source, port, priority,
+          and rule intent checks.
+        </p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>Azure · NSG · Python · Policy Logic</strong></div>
+        <div><span>Pattern</span><strong>Inbound rule exposure validation</strong></div>
+        <div><span>Outcome</span><strong>Reduced internet exposure risk</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow"><div>NSG Rule</div><div>Source</div><div>Port</div><div>Priority</div><div>Intent</div><div>Action</div></div>
+        <article class="case-section">
+          <span>Challenge</span>
+          <h2>Not every broad rule has the same risk.</h2>
+          <p>
+            Azure NSG rules can become overly permissive when broad sources, dangerous ports, or low-priority
+            allow rules expose resources to the internet. Remediation needs to understand intent so it does not
+            break legitimate access patterns.
+          </p>
+        </article>
+        <article class="case-section">
+          <span>Approach</span>
+          <h2>Evaluate rule context before action.</h2>
+          <ul>
+            <li>Checked source ranges for internet-wide exposure.</li>
+            <li>Evaluated destination ports and protocols against risky service patterns.</li>
+            <li>Reviewed rule priority and direction to understand effective access.</li>
+            <li>Allowed exception paths for approved business access.</li>
+            <li>Routed ambiguous rules for review instead of blind remediation.</li>
+          </ul>
+        </article>
+        <article class="case-section">
+          <span>Security Value</span>
+          <h2>Exposure reduction with operational care.</h2>
+          <p>
+            The workflow demonstrates how cloud security automation can reduce internet exposure while preserving
+            safety checks for ownership, exceptions, and service intent.
+          </p>
+        </article>
+      </div>
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>Azure remediation pattern focused on inbound exposure, policy logic, and safe exception handling.</p>
+        <a href="wiz-auto-remediation.html">Wiz Auto Remediation</a>
+        <a href="terraform-security-infrastructure.html">Terraform Infrastructure</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

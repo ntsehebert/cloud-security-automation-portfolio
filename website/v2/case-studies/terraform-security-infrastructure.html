@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study on secure static portfolio infrastructure using Terraform, S3, CloudFront, ACM, and Route 53." />
+  <title>Terraform Security Infrastructure | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20260515-v2about" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#systems">Systems</a>
+      <a href="../index.html#principles">Principles</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#systems">Back to systems</a>
+    <section class="case-intro">
+      <div>
+        <span>Case Study · IaC · AWS</span>
+        <h1>Secure static portfolio infrastructure with Terraform, S3, and CloudFront.</h1>
+        <p>
+          Built repeatable AWS hosting infrastructure using private S3, CloudFront, ACM, Route 53, encryption,
+          versioning, security headers, and deployment automation.
+        </p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>Terraform · S3 · CloudFront · ACM · Route 53</strong></div>
+        <div><span>Pattern</span><strong>Private origin with global CDN delivery</strong></div>
+        <div><span>Outcome</span><strong>Secure, repeatable portfolio hosting</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow"><div>Terraform</div><div>S3</div><div>CloudFront</div><div>ACM</div><div>Route 53</div><div>Headers</div></div>
+        <article class="case-section">
+          <span>Challenge</span>
+          <h2>Static sites still need secure cloud architecture.</h2>
+          <p>
+            A portfolio website should be simple to operate, but the infrastructure should still demonstrate
+            security fundamentals: private storage, encrypted delivery, custom domain support, security headers,
+            and repeatable deployment.
+          </p>
+        </article>
+        <article class="case-section">
+          <span>Approach</span>
+          <h2>Use Terraform to make the hosting pattern repeatable.</h2>
+          <ul>
+            <li>Created private S3 hosting bucket with encryption, versioning, and public access block.</li>
+            <li>Delivered content through CloudFront instead of exposing the bucket directly.</li>
+            <li>Configured ACM certificate validation and Route 53 records for the custom domain.</li>
+            <li>Added security response headers including CSP, HSTS, X-Frame-Options, and content-type protection.</li>
+            <li>Used deploy automation to sync content to S3 and invalidate CloudFront.</li>
+          </ul>
+        </article>
+        <article class="case-section">
+          <span>Security Value</span>
+          <h2>Infrastructure choices communicate engineering maturity.</h2>
+          <p>
+            The project demonstrates secure defaults, least exposure, repeatable IaC, and production-style
+            delivery discipline even for a static portfolio.
+          </p>
+        </article>
+      </div>
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>Secure AWS delivery pattern for static hosting, custom domains, CDN protection, and infrastructure as code.</p>
+        <a href="wiz-auto-remediation.html">Auto Remediation</a>
+        <a href="sql-audit-logging.html">Audit Logging</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
