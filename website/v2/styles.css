@@ -439,6 +439,7 @@ h1 {
 
 .about-section,
 .certification-section,
+.ai-security-section,
 .work-board,
 .operating-model {
   max-width: var(--max);
@@ -508,7 +509,7 @@ h1 {
 
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   overflow: hidden;
   border: 1px solid rgba(244, 247, 241, 0.14);
@@ -543,6 +544,81 @@ h1 {
   padding-top: 92px;
   padding-bottom: 90px;
 }
+
+.ai-security-section {
+  padding-top: 92px;
+}
+
+.ai-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.65fr);
+  gap: 44px;
+  overflow: hidden;
+  border: 1px solid rgba(185, 255, 93, 0.28);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(92, 154, 255, 0.16), transparent 22rem),
+    linear-gradient(135deg, rgba(185, 255, 93, 0.08), transparent 42%),
+    #111923;
+  margin-top: 34px;
+  padding: 42px;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.ai-feature:hover,
+.ai-feature:focus-visible {
+  border-color: rgba(185, 255, 93, 0.62);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.project-kicker,
+.ai-control-flow span {
+  color: var(--lime);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ai-feature h3 {
+  max-width: 650px;
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: 1.06;
+  margin-top: 14px;
+}
+
+.ai-feature p {
+  color: rgba(238, 243, 234, 0.72);
+  font-size: 17px;
+  line-height: 1.72;
+  margin-top: 20px;
+}
+
+.project-link {
+  display: inline-block;
+  color: #eef3ea;
+  margin-top: 28px;
+}
+
+.ai-control-flow {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+}
+
+.ai-control-flow div {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 2px 12px;
+  border: 1px solid rgba(244, 247, 241, 0.13);
+  border-radius: 15px;
+  background: rgba(7, 12, 18, 0.72);
+  padding: 15px 17px;
+}
+
+.ai-control-flow strong { color: #eef3ea; }
+.ai-control-flow small { grid-column: 2; color: rgba(238, 243, 234, 0.54); }
 
 .section-lead {
   display: grid;
@@ -884,6 +960,7 @@ h2 {
   .section-lead,
   .about-grid,
   .cert-grid,
+  .ai-feature,
   .model-grid,
   .case-intro,
   .case-grid {
@@ -901,6 +978,8 @@ h2 {
 }
 
 @media (max-width: 660px) {
+  .ai-feature { padding: 26px; }
+
   .system-list a {
     grid-template-columns: 1fr;
   }

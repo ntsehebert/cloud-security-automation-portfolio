@@ -2,7 +2,7 @@
 
 Personal cloud security engineering portfolio for `https://hebertntse.com`.
 
-The site presents case studies across Wiz CSPM automation, Python remediation playbooks, Azure NSG exposure handling, SQL audit logging, and Terraform-based AWS infrastructure.
+The site presents cloud security case studies across Wiz CSPM automation, Python remediation playbooks, Azure NSG exposure handling, SQL audit logging, and Terraform-based AWS infrastructure. It also includes an AI security reference project using Google Cloud Model Armor for prompt injection defense, sensitive data protection, and model response screening.
 
 ## Architecture
 

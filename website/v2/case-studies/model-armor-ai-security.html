@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI security project using Google Cloud Model Armor to detect prompt injection, jailbreaks, sensitive data leakage, malicious URLs, and unsafe model content." />
+  <title>Model Armor AI Security Gateway | Hebert Ntse</title>
+  <link rel="icon" href="../../assets/favicon.svg?v=20260515-lime" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles.css?v=20261004-ai-security" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="../index.html">Hebert Ntse</a>
+    <nav aria-label="Portfolio navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#ai-security">AI Security</a>
+      <a href="../index.html#systems">Cloud Security</a>
+      <a href="../index.html#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <main class="case-shell">
+    <a class="v2-back" href="../index.html#ai-security">Back to AI security</a>
+    <section class="case-intro">
+      <div>
+        <span>Reference Project · AI Security · Runtime Guardrails</span>
+        <h1>Protecting LLM prompts and responses with Google Model Armor.</h1>
+        <p>Designed a model-agnostic security gateway that evaluates untrusted prompts before inference and screens model responses before release, reducing exposure to prompt injection, jailbreaks, sensitive data loss, malicious URLs, and harmful content.</p>
+      </div>
+      <aside class="case-facts">
+        <div><span>Stack</span><strong>Model Armor · Vertex AI · Cloud Run · Cloud Logging</strong></div>
+        <div><span>Pattern</span><strong>Bidirectional AI runtime inspection</strong></div>
+        <div><span>Project Status</span><strong>Security architecture and implementation plan</strong></div>
+      </aside>
+    </section>
+
+    <section class="case-grid">
+      <div>
+        <div class="case-flow" aria-label="Model Armor security flow">
+          <div>User</div><div>App API</div><div>Prompt Scan</div><div>LLM</div><div>Response Scan</div><div>Audit</div>
+        </div>
+
+        <article class="case-section">
+          <span>Security Problem</span>
+          <h2>Every prompt and response crosses a trust boundary.</h2>
+          <p>An LLM application accepts natural-language instructions that can be ambiguous, adversarial, or mixed with sensitive business data. Attackers can attempt to override system instructions, extract secrets, insert unsafe links, or persuade an agent to misuse connected tools. A model can also disclose personal data or credentials in an otherwise valid response.</p>
+          <p>The design treats users, retrieved content, model output, and tool results as untrusted data. Model Armor becomes a policy enforcement point in the application path rather than relying on the model to defend itself.</p>
+        </article>
+
+        <article class="case-section">
+          <span>Architecture</span>
+          <h2>Inspect before inference. Inspect again before release.</h2>
+          <ul>
+            <li>The application authenticates the caller, validates request size, and assigns a correlation ID.</li>
+            <li>The prompt is sent to <code>sanitizeUserPrompt</code> using a versioned Model Armor policy template.</li>
+            <li>Prompt injection, jailbreak, sensitive-data, malicious-URL, and responsible-AI results drive allow, block, or review logic.</li>
+            <li>Only an approved prompt reaches the configured LLM; the gateway remains independent of the model provider.</li>
+            <li>The answer is sent to <code>sanitizeModelResponse</code> before it is returned to the user.</li>
+            <li>Decisions and filter metadata are recorded in Cloud Logging for investigation and policy tuning.</li>
+          </ul>
+        </article>
+
+        <article class="case-section">
+          <span>Policy Design</span>
+          <h2>One template, multiple focused controls.</h2>
+          <div class="decision-strip">
+            <div><strong>Prompt injection and jailbreak</strong><p>Detect attempts to override instructions, evade safeguards, or manipulate the application.</p></div>
+            <div><strong>Sensitive Data Protection</strong><p>Inspect prompts and responses for PII, financial data, credentials, API keys, and custom data types.</p></div>
+            <div><strong>Malicious URLs and files</strong><p>Reject unsafe links or supported file content before they influence the model or reach the user.</p></div>
+            <div><strong>Responsible AI filters</strong><p>Apply confidence thresholds for harmful content categories based on the application's audience.</p></div>
+          </div>
+        </article>
+
+        <article class="case-section">
+          <span>Decision Logic</span>
+          <h2>Fail closed for high-confidence security violations.</h2>
+          <pre><code>prompt_result = model_armor.sanitize_user_prompt(prompt)
+
+if prompt_result.high_confidence_security_match:
+    block_request(reason=prompt_result.matched_filter)
+elif prompt_result.sensitive_data_match:
+    redact_or_route_for_review()
+else:
+    response = llm.generate(prompt)
+    output_result = model_armor.sanitize_model_response(response)
+    return response if output_result.safe else safe_fallback()</code></pre>
+          <p>The application owns the final decision. Production policy should distinguish a security attack from a content-policy match, handle service errors explicitly, and avoid exposing filter details that help an attacker tune later attempts.</p>
+        </article>
+
+        <article class="case-section">
+          <span>Rollout</span>
+          <h2>Measure first, then enforce with evidence.</h2>
+          <ol>
+            <li>Start in inspect-only mode against representative traffic and approved red-team prompts.</li>
+            <li>Measure detection rate, false positives, added latency, failures, and cost by application path.</li>
+            <li>Tune confidence thresholds and Sensitive Data Protection infoTypes with application owners.</li>
+            <li>Enable inspect-and-block for high-confidence injection, credential leakage, and malicious URLs.</li>
+            <li>Use floor settings to keep future templates above the organization's minimum baseline.</li>
+          </ol>
+        </article>
+
+        <article class="case-section">
+          <span>Telemetry &amp; Privacy</span>
+          <h2>Log decisions without creating a second data leak.</h2>
+          <p>Audit logs capture template administration and API metadata. Full sanitize-operation logging can include prompt and response content, so it should be enabled only with deliberate retention, regional routing, access controls, and redaction. Correlation IDs connect the application request, Model Armor decision, model invocation, and user-visible outcome without placing raw secrets in routine operational logs.</p>
+        </article>
+
+        <article class="case-section">
+          <span>Validation Plan</span>
+          <h2>Test the control against attacks and normal work.</h2>
+          <ul>
+            <li>Direct, obfuscated, and multilingual prompt injection attempts.</li>
+            <li>Jailbreak prompts requesting system instructions, hidden context, or policy bypass.</li>
+            <li>Synthetic PII, financial data, cloud credentials, and API keys in inputs and outputs.</li>
+            <li>Benign business prompts with security terminology to measure false positives.</li>
+            <li>Timeout, quota, oversized-input, unavailable-service, and skipped-filter paths.</li>
+            <li>Regression tests for every policy template change before production enforcement.</li>
+          </ul>
+        </article>
+
+        <article class="case-section">
+          <span>Defense in Depth</span>
+          <h2>Runtime filtering is one layer of the AI security model.</h2>
+          <p>The gateway complements strong identity, least-privilege service accounts, tool allowlists, retrieval access controls, output encoding, rate limits, secret management, and human approval for high-impact agent actions. Model Armor reduces runtime risk; it does not replace secure application design or model evaluation.</p>
+        </article>
+      </div>
+
+      <aside class="case-side">
+        <h3>Project Snapshot</h3>
+        <p>Research-backed reference architecture for enforcing AI security policy on both sides of model inference.</p>
+        <a href="https://docs.cloud.google.com/model-armor/overview" target="_blank" rel="noopener noreferrer">Model Armor overview ↗</a>
+        <a href="https://docs.cloud.google.com/model-armor/sanitize-prompts-responses" target="_blank" rel="noopener noreferrer">Sanitize prompts &amp; responses ↗</a>
+        <a href="https://docs.cloud.google.com/model-armor/configure-logging" target="_blank" rel="noopener noreferrer">Logging guidance ↗</a>
+        <a href="wiz-auto-remediation.html">Cloud security projects</a>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
