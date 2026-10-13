@@ -5,3 +5,11 @@
 tfplan
 terraform.tfvars
 .DS_Store
+
+# Local Python and agent configuration
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
